@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Registration Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            h1{
+                color: white;
+                font-family:cursive;
+            }
+            label{
+                color:maroon;
+                font-family:cursive;
+
+
+            }
+            input
+            {
+                text-align: center;
+            }
+            .pagination a {
+                border-radius: 5px;
+            }
+
+            .pagination a.active {
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body style="background-image: url('regpageim.png'); background-repeat:no-repeat; background-size:cover;">
+        <form  action="studb.jsp" method="get" onsubmit="return registrationpage()">
+            <h1 style="text-align:center; color:black;font-family: cursive" >Registration Form</h1><br/>
+            <div class="form-group">    
+                <div style="padding-left: 35%;padding-right: 35%" class="col-lg-12 col-md-6 col-sm-6 col-xs-6">
+                    <br/> <label>First Name</label>
+                    <input class="form-control" placeholder="Enter the First Name" type="text" id="fname" name="fname"/>  
+                </div>
+                <div style="padding-left: 35%;padding-right:35%" class="col-lg-12 col-md-6 col-sm-2 col-xs-2">
+                    <br/> <label>Last Name</label>
+                    <input class="form-control" placeholder="Enter the Last Name" type="text" id="lname" name="lname" />
+                </div>
+                <div style="padding-left: 35%;padding-right:35%" class="col-lg-12 col-md-6 col-sm-2 col-xs-2">
+                    <br/> <label>DOB</label>
+                    <input class="form-control" placeholder="Enter the DOB" type="date" id="dob" name="dob" max="2021-10-12" required="" />
+                </div>
+                <div style="padding-left: 35%;padding-right: 35%"  class="col-lg-12 col-md-6 col-sm-2 col-xs-2">
+                    <br/> <label>Email</label>
+                    <input class="form-control" placeholder="Enter the EmailID" type="email" id="email" name="email"/>
+                </div>
+                <div style="padding-left: 35%;padding-right:35%"  class="col-lg-12 col-md-6 col-sm-2 col-xs-2">
+                    <br/><label>Phone</label>
+                    <input class="form-control" placeholder="Enter the Contact no" type="text" id="phone" name="phone" />
+                </div>
+                <div style="padding-left: 35%;padding-right:35%"  class="col-lg-12 col-md-6 col-sm-2 col-xs-2">
+                    <br/><label>Faculty Code</label>
+                    <input class="form-control" placeholder="Enter your code" type="text" id="code" name="code" required />
+                </div>
+                <div style="padding-left:35%;padding-right:35%"  class="col-lg-12 col-md-12 col-sm-2 col-xs-2">
+                    <br/> <label>Password</label><br/>
+                    <input class="form-control" placeholder="Enter the Password" type="password" id="pswd" name="pswd"/> 
+                </div>
+                <div style="padding-left:35%;padding-right:35%"  class="col-lg-12 col-md-12 col-sm-2 col-xs-2">
+                    <br/> <label>Confirm Password</label><br/>
+                    <input class="form-control" placeholder="Confirm your Password" type="password" id="cpswd" name="cpswd"/> 
+                </div>
+                <div style="padding-left:48%;padding-right:35%" class="col-lg-12 col-md-12 col-sm-2 col-xs-2">
+                    <br/> <input type="submit" class="btn btn-primary" value="Register" style="text-align: center;" onclick="registrationpage();" />
+                </div>
+            </div>
+
+
+        </form>
+        <script>
+            function registrationpage()
+            {
+                var flagger = true;
+                debugger;
+
+                var namef = document.getElementById('fname').value;
+                var namel = document.getElementById('lname').value;
+                var phonea = document.getElementById('phone').value;
+                var emaila = document.getElementById('email').value;
+                var passworda = document.getElementById('pswd').value;
+                var passwordb = document.getElementById('cpswd').value;
+                var datea = document.getElementById('dob').value;
+                var codea = document.getElementById('code').value;
+                //var typeuser= document.getElementById('user').value;   
+                if (namef == "" && namel == "" && phonea == "" && codea == "" && emaila == "" && datea == "" && passworda == "" && passwordb == "")
+                {
+                    alert("please fill the form");
+                    //flagger=false;
+                    return false;
+                }
+
+                var namefpattern = /^[a-zA-Z]+$/;
+                if (!namefpattern.test(namef))
+                {
+                    alert("please enter valid first name");
+                    flagger = false;
+                    return flagger;
+                }
+
+                var codepattern = /^(FAC){1}[0-9]{5}$/;
+                if (!codepattern.test(codea))
+                {
+                    alert("please enter valid faculty code");
+                    flagger = false;
+                    return flagger;
+                }
+
+                var namelpattern = /^[a-zA-Z]+$/;
+                if (!namelpattern.test(namel))
+                {
+                    alert("please enter valid last name");
+                    flagger = false;
+                    return flagger;
+                }
+
+                var phoneapattern = /^[6-9]{1}[0-9]{9}$/;
+                if (!phoneapattern.test(phonea))
+                {
+                    alert("please enter valid phone no");
+                    flagger = false;
+                    return flagger;
+                }
+
+                var emailapattern = /^[a-zA-Z0-9]+[@]{1}[a-zA-Z]+[.]{1}[a-zA-Z]{2,3}$/;
+                if (!emailapattern.test(emaila))
+                {
+                    alert("please enter valid email");
+                    flagger = false;
+                    return flagger;
+                }
+
+
+                var passwordapattern = /^[a-zA-Z]{5,8}$/;
+                if (!passwordapattern.test(passworda))
+                {
+                    alert("please enter valid password");
+                    flagger = false;
+                    return flagger;
+                }
+
+                var passwordbpattern = /^[a-zA-Z]{5,8}$/;
+                if (!passwordbpattern.test(passwordb))
+                {
+                    alert("please enter valid password");
+                    flagger = false;
+                    return flagger;
+                }
+
+                if (passworda !== passwordb)
+                {
+                    alert('password did not match');
+                    flagger = false;
+                    return flagger;
+                }
+            }
+
+        </script>
+    </body>
+</html>
